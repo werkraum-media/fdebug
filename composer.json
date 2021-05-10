@@ -1,0 +1,48 @@
+{
+    "name": "werkraummedia/fdebug",
+    "description": "Integrator optimized f:debug alternative",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/werkraum-media/fdebug",
+    "support": {
+        "email": "coding@daniel-siepmann.de",
+        "source": "https://github.com/werkraum-media/fdebug",
+        "issues": "https://github.com/werkraum-media/fdebug/issues"
+    },
+    "authors": [
+        {
+            "name": "Daniel Siepmann",
+            "email": "coding@daniel-siepmann.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "WerkraumMedia\\FDebug\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WerkraumMedia\\FDebug\\Tests\\": "Tests/"
+        }
+    },
+    "require": {
+        "php": "^7.2",
+        "typo3/cms-core": "^10.4",
+        "typo3/cms-extbase": "^10.4",
+        "typo3/cms-fluid": "^10.4",
+        "typo3/cms-frontend": "^10.4"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "extension-key": "fdebug",
+            "web-dir": ".Build/web"
+        },
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
+        }
+    }
+}
