@@ -21,8 +21,10 @@ namespace WerkraumMedia\FDebug\ViewHelpers;
  * 02110-1301, USA.
  */
 
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\ViewHelpers\DebugViewHelper as Typo3DebugViewHelper;
 use WerkraumMedia\FDebug\Utility\DebuggerUtility;
+
 
 /**
  * Replacement for original TYPO3 ViewHelper.
