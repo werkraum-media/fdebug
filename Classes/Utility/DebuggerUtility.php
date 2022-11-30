@@ -455,20 +455,7 @@ class DebuggerUtility
                     }
                     $dump .= ' => ';
                     $property->setAccessible(true);
-                    $visibility = ($property->isProtected() ? 'protected' : ($property->isPrivate() ? 'private' : 'public'));
-                    if ($plainText) {
-                        $dump .= self::ansiEscapeWrap($visibility, '42;30', $ansiColors) . ' ';
-                    } else {
-                        $dump .= '<span class="extbase-debug-visibility">' . $visibility . '</span>';
-                    }
                     $dump .= self::renderDump($property->getValue($object), $level, $plainText, $ansiColors);
-                    if ($object instanceof AbstractDomainObject && !$object->_isNew() && $object->_isDirty($property->getName())) {
-                        if ($plainText) {
-                            $dump .= ' ' . self::ansiEscapeWrap('modified', '43;30', $ansiColors);
-                        } else {
-                            $dump .= '<span class="extbase-debug-dirty">modified</span>';
-                        }
-                    }
                 }
 
                 foreach ($methods as $method) {
@@ -483,20 +470,7 @@ class DebuggerUtility
                             . htmlspecialchars(self::shortenMethodName($method->getName()), ENT_COMPAT) . '</span>';
                     }
                     $dump .= ' => ';
-                    $visibility = ($method->isProtected() ? 'protected' : ($method->isPrivate() ? 'private' : 'public'));
-                    if ($plainText) {
-                        $dump .= self::ansiEscapeWrap($visibility, '42;30', $ansiColors) . ' ';
-                    } else {
-                        $dump .= '<span class="extbase-debug-visibility">' . $visibility . '</span>';
-                    }
                     $dump .= self::renderDump($method->invoke($object), $level, $plainText, $ansiColors);
-                    if ($object instanceof AbstractDomainObject && !$object->_isNew() && $object->_isDirty($method->getName())) {
-                        if ($plainText) {
-                            $dump .= ' ' . self::ansiEscapeWrap('modified', '43;30', $ansiColors);
-                        } else {
-                            $dump .= '<span class="extbase-debug-dirty">modified</span>';
-                        }
-                    }
                 }
             }
         }
