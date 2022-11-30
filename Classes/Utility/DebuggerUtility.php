@@ -617,11 +617,19 @@ class DebuggerUtility
     protected static function exposeMethod(ReflectionMethod $method): bool
     {
         $methodName = $method->getName();
+        $className = $method->getDeclaringClass()->getName();
         $allowedPrefixes = ['get', 'has', 'is'];
+        $notAllowedCombinations = [
+            'TYPO3\CMS\Core\Resource\FileReference::getContents',
+            'TYPO3\CMS\Core\Resource\File::getContents',
+        ];
 
         $allowedByName = false;
         foreach ($allowedPrefixes as $allowedPrefix) {
-            if (StringUtility::beginsWith($methodName, $allowedPrefix)) {
+            if (
+                StringUtility::beginsWith($methodName, $allowedPrefix)
+                && in_array($className . '::' . $methodName, $notAllowedCombinations) === false
+            ) {
                 $allowedByName = true;
                 break;
             }
